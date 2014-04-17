@@ -1,7 +1,7 @@
-Munin weather plugin written in Ruby
+Munin weather_* plugin written in Ruby
 ====================
 
-This is an asterisk **plugin weather_*** that collects environmental weather data.
+This is an asterisk plugin that collects environmental weather data.
 
 API provided by http://worldweatheronline.com  
 Get your free API key http://developer.worldweatheronline.com/  
