@@ -28,7 +28,7 @@ graph_category sensors
 graph_vlabel Environmental Variables
 graph_args --base 1000
 cloudcover.label Cloudcover
-humidity.label Humidity
+humidity.label Humidity%
 precipMM.label PrecipMM
 temp_#{@t}.label temp_#{@t}
 visibility.label Visibility
