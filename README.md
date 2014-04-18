@@ -3,7 +3,7 @@ Munin weather_* plugin written in Ruby
 
 This is an asterisk plugin that collects environmental weather data.
 
-API provided by http://worldweatheronline.com
+API provided by http://worldweatheronline.com  
 Plugin demo: http://amindi.idev.ge
 
 #### Data collected
