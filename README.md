@@ -3,8 +3,7 @@ Munin weather_* plugin written in Ruby
 
 This is an asterisk plugin that collects environmental weather data.
 
-API provided by http://worldweatheronline.com  
-Get your free API key http://developer.worldweatheronline.com/  
+API provided by http://worldweatheronline.com
 Plugin demo: http://amindi.idev.ge
 
 #### Data collected
@@ -16,6 +15,11 @@ Plugin demo: http://amindi.idev.ge
 6. visibility.value
 7. windspeed Kmph or Miles
 
+#### Dependencies
+```
+gem install json
+```
+
 #### Configuration example
 Add configuration to the end of this file **/etc/munin/plugin-conf.d/munin-node**
 ```
@@ -24,6 +28,18 @@ env.api_key cn5tkxfnwtkjtaccdccpu3ew
 env.temperature_unit C # or F
 env.speed_unit Kmph # or Miles
 ```
+Get your free API key here: http://developer.worldweatheronline.com/
 
-#### Dependencies
-gem install json
+#### Possible problems
+```
+/usr/bin/env: ruby: No such file or directory
+```
+Quick fix:
+```
+which ruby
+/usr/local/rvm/rubies/ruby-2.1.1/bin/ruby
+vi weather_
+```
+
+replace first line **#!/usr/bin/env ruby** with **#!/usr/local/rvm/rubies/ruby-2.1.1/bin/ruby** (result of which ruby command)
+
