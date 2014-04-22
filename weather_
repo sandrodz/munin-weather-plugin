@@ -48,7 +48,7 @@ def output_values
 	puts "cloudcover.value #{@current['cloudcover']}"
 	puts "humidity.value #{@current['humidity']}"
 	puts "precipMM.value #{@current['precipMM']}"
-	puts "pressure.value #{@current['pressure'] * 0.001}"
+	puts "pressure.value #{@current['pressure'].to_i * 0.001}"
 	puts "temp_#{@t}.value #{@current["temp_#{@t}"]}"
 	puts "visibility.value #{@current['visibility']}"
 	puts "windspeed#{@s}.value #{@current["windspeed#{@s}"]}"
