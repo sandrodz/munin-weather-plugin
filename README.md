@@ -5,6 +5,9 @@ This is an asterisk plugin that collects environmental weather data.
 
 API provided by http://worldweatheronline.com  
 
+![Screenshot, day](https://raw.githubusercontent.com/wearede/munin-weather-plugin/screenshots/weather_tbilisi-day.png "Screenshot, day")
+![Screenshot, Week](https://raw.githubusercontent.com/wearede/munin-weather-plugin/screenshots/weather_tbilisi-week.png "Screenshot, Week")
+
 #### Data collected
 1. cloudcover.value
 2. humidity.value
