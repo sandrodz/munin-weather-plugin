@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 #
 # Api provided by worldweatheronline.com
-# Plugin demo: amindi.idev.ge
-# Plugin download: https://github.com/sandrodz/munin-weather-plugin
+# Plugin demo: 
+# Plugin download: https://github.com/wearede/munin-weather-plugin
 #
 # Configuration example
 #
@@ -15,15 +15,15 @@
 # gem install json
 # 
 
-@api_key = ENV['api_key']
-@location = __FILE__
-@location = @location.split('_').last
-@t = ENV['temperature_unit']
-@s = ENV['speed_unit']
+api_key = ENV['api_key']
+location = __FILE__
+location = location.split('_').last
+t = ENV['temperature_unit']
+s = ENV['speed_unit']
 
 def output_config
 	puts <<-END
-graph_title #{@location.capitalize} Weather
+graph_title #{location.capitalize} Weather
 graph_category sensors
 graph_vlabel Environmental Variables
 graph_args --base 1000
@@ -31,9 +31,9 @@ cloudcover.label Cloudcover
 humidity.label Humidity%
 precipMM.label PrecipMM
 pressure.label PressureBar
-temp_#{@t}.label temp_#{@t}
+temp_#{t}.label temp_#{t}
 visibility.label Visibility
-windspeed#{@s}.label Windspeed#{@s}
+windspeed#{s}.label Windspeed#{s}
 	END
 	exit 0
 end
@@ -41,17 +41,17 @@ end
 def output_values
 	require 'net/http'
 	require 'json'
-	@url = "http://api.worldweatheronline.com/free/v1/weather.ashx?q=#{@location}&format=json&num_of_days=1&date=today&key=#{@api_key}"
-	@json = Net::HTTP.get(URI.parse(@url))
-	@parse = JSON.parse(@json)
-	@current = @parse['data']['current_condition'].first
-	puts "cloudcover.value #{@current['cloudcover']}"
-	puts "humidity.value #{@current['humidity']}"
-	puts "precipMM.value #{@current['precipMM']}"
-	puts "pressure.value #{@current['pressure'].to_i * 0.001}"
-	puts "temp_#{@t}.value #{@current["temp_#{@t}"]}"
-	puts "visibility.value #{@current['visibility']}"
-	puts "windspeed#{@s}.value #{@current["windspeed#{@s}"]}"
+	url = "http://api.worldweatheronline.com/free/v1/weather.ashx?q=#{location}&format=json&num_of_days=1&date=today&key=#{api_key}"
+	json = Net::HTTP.get(URI.parse(url))
+	parse = JSON.parse(json)
+	current = parse['data']['current_condition'].first
+	puts "cloudcover.value #{current['cloudcover']}"
+	puts "humidity.value #{current['humidity']}"
+	puts "precipMM.value #{current['precipMM']}"
+	puts "pressure.value #{current['pressure'].to_i * 0.001}"
+	puts "temp_#{t}.value #{current["temp_#{t}"]}"
+	puts "visibility.value #{current['visibility']}"
+	puts "windspeed#{s}.value #{current["windspeed#{s}"]}"
 end
 
 if ARGV[0] == 'config'
