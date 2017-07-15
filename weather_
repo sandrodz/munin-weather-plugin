@@ -41,7 +41,7 @@ end
 def output_values
 	require 'net/http'
 	require 'json'
-	@url = "http://api.worldweatheronline.com/free/v1/weather.ashx?q=#{@location}&format=json&num_of_days=1&date=today&key=#{@api_key}"
+	@url = "http://api.worldweatheronline.com/premium/v1/weather.ashx?q=#{@location}&format=json&num_of_days=1&date=today&key=#{@api_key}"
 	@json = Net::HTTP.get(URI.parse(@url))
 	@parse = JSON.parse(@json)
 	@current = @parse['data']['current_condition'].first
