@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # Api provided by worldweatheronline.com
-# Plugin demo: amindi.idev.ge
+# Plugin demo:
 # Plugin download: https://github.com/sandrodz/munin-weather-plugin
 #
 # Configuration example
@@ -13,7 +13,7 @@
 #
 # Requires json gem:
 # gem install json
-# 
+#
 
 @api_key = ENV['api_key']
 @location = __FILE__
@@ -22,7 +22,7 @@
 @s = ENV['speed_unit']
 
 def output_config
-	puts <<-END
+  puts <<-END
 graph_title #{@location.capitalize} Weather
 graph_category sensors
 graph_vlabel Environmental Variables
@@ -34,28 +34,28 @@ pressure.label PressureBar
 temp_#{@t}.label temp_#{@t}
 visibility.label Visibility
 windspeed#{@s}.label Windspeed#{@s}
-	END
-	exit 0
+  END
+  exit 0
 end
 
 def output_values
-	require 'net/http'
-	require 'json'
-	@url = "http://api.worldweatheronline.com/premium/v1/weather.ashx?q=#{@location}&format=json&num_of_days=1&date=today&key=#{@api_key}"
-	@json = Net::HTTP.get(URI.parse(@url))
-	@parse = JSON.parse(@json)
-	@current = @parse['data']['current_condition'].first
-	puts "cloudcover.value #{@current['cloudcover']}"
-	puts "humidity.value #{@current['humidity']}"
-	puts "precipMM.value #{@current['precipMM']}"
-	puts "pressure.value #{@current['pressure'].to_i * 0.001}"
-	puts "temp_#{@t}.value #{@current["temp_#{@t}"]}"
-	puts "visibility.value #{@current['visibility']}"
-	puts "windspeed#{@s}.value #{@current["windspeed#{@s}"]}"
+  require 'net/http'
+  require 'json'
+  @url = "http://api.worldweatheronline.com/premium/v1/weather.ashx?q=#{@location}&format=json&num_of_days=1&date=today&key=#{@api_key}"
+  @json = Net::HTTP.get(URI.parse(@url))
+  @parse = JSON.parse(@json)
+  @current = @parse['data']['current_condition'].first
+  puts "cloudcover.value #{@current['cloudcover']}"
+  puts "humidity.value #{@current['humidity']}"
+  puts "precipMM.value #{@current['precipMM']}"
+  puts "pressure.value #{@current['pressure'].to_i * 0.001}"
+  puts "temp_#{@t}.value #{@current["temp_#{@t}"]}"
+  puts "visibility.value #{@current['visibility']}"
+  puts "windspeed#{@s}.value #{@current["windspeed#{@s}"]}"
 end
 
 if ARGV[0] == 'config'
-	output_config
+  output_config
 else
-	output_values
+  output_values
 end
